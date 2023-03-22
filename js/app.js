@@ -39,20 +39,28 @@ document.addEventListener('DOMContentLoaded', () =>{
         return navigator.clipboard.writeText(text)
     }
 
-    function setRandomColors(){
-        const colors = [];
+    function setRandomColors(isInitial){
+        const colors = isInitial ? getColorsFromHash() : [];
 
-        cols.forEach(col => {
+        cols.forEach((col, index) => {
             const isLocked = col.querySelector('i').classList.contains('fa-lock');
             const text = col.querySelector('h2');
             const button = col.querySelector('button');
-            const color = generateRandomColor();
+            
+
+            const color = isInitial 
+            ? colors[index] 
+                ? colors[index] 
+                : generateRandomColor()
+            : generateRandomColor();
 
             if(!isLocked){
                 text.textContent = color;
                 col.style.backgroundColor = color;
 
-                colors.push(color)
+                if(!isInitial){
+                    colors.push(color)
+                }
 
                 setTextColor(text, color);
                 setTextColor(button, color);
@@ -79,5 +87,16 @@ document.addEventListener('DOMContentLoaded', () =>{
         console.log(colorsString)
     }
 
-    setRandomColors()
+    function getColorsFromHash(){
+        if(document.location.hash.length > 1){
+            return document.location.hash
+            .substring(1)
+            .split('-')
+            .map(color => '#' + color)
+        } 
+
+        return []
+    }
+
+    setRandomColors(true)
 });
