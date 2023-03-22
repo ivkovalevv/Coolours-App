@@ -83,8 +83,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             return col.substring(1)
         }).join('-');
         document.location.hash = colorsString;
-
-        console.log(colorsString)
     }
 
     function getColorsFromHash(){
