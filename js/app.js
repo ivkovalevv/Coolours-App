@@ -1,9 +1,42 @@
 document.addEventListener('DOMContentLoaded', () =>{
-    const cols = document.querySelectorAll('.col');
+    const container = document.querySelector('.container');
+    let deafultCalc = 5;
+
+    function createCols(){
+        const column = document.createElement('div');
+        const columnText = document.createElement('h2');
+        const columnBtn = document.createElement('button');
+        const columnLock = document.createElement('i');
+
+        column.classList.add('col');
+        columnText.dataset.type = 'copy'
+        columnBtn.dataset.type = 'lock'
+        columnLock.dataset.type = 'lock'
+        columnLock.classList.add('fa-solid', 'fa-lock-open');
+
+        columnBtn.append(columnLock);
+        column.append(columnText);
+        column.append(columnBtn);
+
+        container.append(column)
+
+        return{
+            column,
+            columnText,
+            columnBtn,
+            columnLock
+        }
+    }
+
+    for (let i = 0; i < deafultCalc; i++){
+        createCols()
+    }
+
+    let cols = document.querySelectorAll('.col');
 
     document.addEventListener('keydown', (event) => {
-        event.preventDefault()
         if(event.code.toLowerCase() === 'space'){
+            event.preventDefault()
             setRandomColors()
         }
     })
@@ -40,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     function setRandomColors(isInitial){
+        let allColors = document.querySelector('.all-colors');
         const colors = isInitial ? getColorsFromHash() : [];
 
         cols.forEach((col, index) => {
@@ -71,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
 
         updateColorsHash(colors)
+
+        allColors.textContent = 'All colors: ' + colors.map(color => ' ' + color)
     }
 
     function setTextColor(text, color){

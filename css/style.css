@@ -34,11 +34,28 @@ body{
     letter-spacing: 2px;
 }
 
-.container{
-    width: 1200px;
-    height: 550px;
+.colors-container{
     margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    width: 55%;
+    height: 30px;
+    padding: 10px 20px;
+    background-color: #323745;
     border-radius: 20px;
+    cursor: pointer;
+}
+
+.all-colors{
+    color: #cacaca;
+}
+
+.container{
+    width: 1000px;
+    height: 450px;
+    margin-top: 10px;
+    border-radius: 10px;
     display: flex;
     overflow: hidden;
 }
