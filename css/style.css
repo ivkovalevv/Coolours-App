@@ -39,16 +39,67 @@ body{
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 55%;
     height: 30px;
     padding: 10px 20px;
     background-color: #323745;
     border-radius: 20px;
     cursor: pointer;
+    transition: background-color .3s;
+}
+
+.colors-container:hover{
+    background-color: #3e4454;
+}
+
+.colors-container:active{
+    background-color: #2f3441;
 }
 
 .all-colors{
     color: #cacaca;
+}
+
+.fa-clone{
+    color: #FFF;
+}
+
+.fa-check{
+    font-size: 20px;
+    color: green;
+    position: relative;
+}
+
+.fa-check::after{
+    content: 'Copied!';
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: 300;
+    top: -250%;
+    left: -150%;
+    width: 70px;
+    height: 16px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 7px;
+    color: #fff;
+    background-color: #323745;
+    outline: 2px solid green;
+    animation: copied .3s;
+}
+
+@keyframes copied{
+    0%{
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container{

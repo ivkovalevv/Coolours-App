@@ -1,6 +1,32 @@
 document.addEventListener('DOMContentLoaded', () =>{
     const container = document.querySelector('.container');
-    let deafultCalc = 5;
+    const deafultCalc = 5;
+    const inputCalc = document.getElementById('inputCalc');
+
+    function checkInputCalc(){
+        if(!inputCalc.value){
+            for (let i = 0; i < deafultCalc; i++){
+                createCols()
+            }
+        }
+    }
+
+    checkInputCalc()
+
+    inputCalc.addEventListener('input', () =>{
+        container.innerHTML = '';
+        let calc = inputCalc.value
+        for (let i = 0; i < calc; i++){
+            createCols()
+        }
+
+        let cols = document.querySelectorAll('.col');
+        setRandomColors(true, cols)
+
+        checkInputCalc()
+    })
+
+    const cols = document.querySelectorAll('.col');
 
     function createCols(){
         const column = document.createElement('div');
@@ -28,21 +54,17 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
-    for (let i = 0; i < deafultCalc; i++){
-        createCols()
-    }
-
-    let cols = document.querySelectorAll('.col');
-
     document.addEventListener('keydown', (event) => {
         if(event.code.toLowerCase() === 'space'){
             event.preventDefault()
-            setRandomColors()
+            const cols = document.querySelectorAll('.col');
+            setRandomColors(true, cols)
         }
     })
 
     document.addEventListener('click', (event) => {
         const type = event.target.dataset.type;
+        const clone = document.querySelector('.fa-clone');
 
         if(type === 'lock'){
             const node = event.target.tagName.toLowerCase() === 'i'
@@ -53,6 +75,22 @@ document.addEventListener('DOMContentLoaded', () =>{
             node.classList.toggle('fa-lock');
         } else if(type === 'copy'){
             copyToClipBoard(event.target.textContent);
+        } else if(type === 'clone'){
+            const node = event.target.tagName.toLowerCase() === 'div';
+
+            if(node){
+                copyToClipBoard(event.target.textContent);
+            } else{
+                copyToClipBoard(event.target.parentElement.textContent);
+            }
+
+            clone.classList.remove('fa-clone')
+            clone.classList.add('fa-check')
+
+            setTimeout(() => {
+                clone.classList.remove('fa-check')
+                clone.classList.add('fa-clone')
+            }, 2000)
         }
 
     })
@@ -72,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         return navigator.clipboard.writeText(text)
     }
 
-    function setRandomColors(isInitial){
+    function setRandomColors(isInitial, cols){
         let allColors = document.querySelector('.all-colors');
         const colors = isInitial ? getColorsFromHash() : [];
 
@@ -80,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             const isLocked = col.querySelector('i').classList.contains('fa-lock');
             const text = col.querySelector('h2');
             const button = col.querySelector('button');
-            
+
 
             const color = isInitial 
             ? colors[index] 
@@ -132,5 +170,5 @@ document.addEventListener('DOMContentLoaded', () =>{
         return []
     }
 
-    setRandomColors(true)
+    setRandomColors(true, cols)
 });
