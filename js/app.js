@@ -1,32 +1,11 @@
 document.addEventListener('DOMContentLoaded', () =>{
     const container = document.querySelector('.container');
-    const deafultCalc = 5;
     const inputCalc = document.getElementById('inputCalc');
-
-    function checkInputCalc(){
-        if(!inputCalc.value){
-            for (let i = 0; i < deafultCalc; i++){
-                createCols()
-            }
-        }
-    }
-
-    checkInputCalc()
-
-    inputCalc.addEventListener('input', () =>{
-        container.innerHTML = '';
-        let calc = inputCalc.value
-        for (let i = 0; i < calc; i++){
-            createCols()
-        }
-
-        let cols = document.querySelectorAll('.col');
-        setRandomColors(true, cols)
-
-        checkInputCalc()
-    })
-
-    const cols = document.querySelectorAll('.col');
+    let currentCalc;
+    
+    if(getColorsFromHash().length > 0){
+        currentCalc = getColorsFromHash().length
+    } else {currentCalc = 5}
 
     function createCols(){
         const column = document.createElement('div');
@@ -54,11 +33,36 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
+    function checkInputCalcEmpty(){
+        if(!inputCalc.value){
+            for (let i = 0; i < currentCalc; i++){
+                createCols()
+            }
+        }
+    }
+
+    checkInputCalcEmpty()
+
+    function renderColsFromInput(){
+        container.innerHTML = '';
+        let calc = inputCalc.value
+        for (let i = 0; i < calc; i++){
+            createCols()
+        }
+
+        let cols = document.querySelectorAll('.col');
+        setRandomColors(false, cols)
+
+        checkInputCalcEmpty()
+    }
+
+    inputCalc.addEventListener('input', renderColsFromInput)
+
     document.addEventListener('keydown', (event) => {
         if(event.code.toLowerCase() === 'space'){
             event.preventDefault()
             const cols = document.querySelectorAll('.col');
-            setRandomColors(true, cols)
+            setRandomColors(false, cols)
         }
     })
 
@@ -109,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     function copyToClipBoard(text){
         return navigator.clipboard.writeText(text)
     }
+
+    const cols = document.querySelectorAll('.col');
 
     function setRandomColors(isInitial, cols){
         let allColors = document.querySelector('.all-colors');
