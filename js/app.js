@@ -2,6 +2,16 @@ document.addEventListener('DOMContentLoaded', () =>{
     const container = document.querySelector('.container');
     const inputCalc = document.getElementById('inputCalc');
     let currentCalc;
+
+    inputCalc.oninput = function() {
+        if (this.value.length > 1) {
+            this.value = this.value.slice(0,1); 
+        }
+
+        if(this.value === '0'){
+            this.value = '1';
+        }
+    }
     
     if(getColorsFromHash().length > 0){
         currentCalc = getColorsFromHash().length
@@ -9,25 +19,35 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function createCols(){
         const column = document.createElement('div');
+        const columnContainer = document.createElement('div');
         const columnText = document.createElement('h2');
+        const columnClone = document.createElement('i');
         const columnBtn = document.createElement('button');
         const columnLock = document.createElement('i');
 
         column.classList.add('col');
+        columnContainer.classList.add('heading-container')
         columnText.dataset.type = 'copy'
+        columnClone.classList.add('fa', 'fa-clone', 'heading-copy')
+        columnClone.dataset.type = 'copy'
+        columnClone.ariaHidden = 'true'
         columnBtn.dataset.type = 'lock'
         columnLock.dataset.type = 'lock'
         columnLock.classList.add('fa-solid', 'fa-lock-open');
 
         columnBtn.append(columnLock);
-        column.append(columnText);
+        columnContainer.append(columnText)
+        columnContainer.append(columnClone)
+        column.append(columnContainer);
         column.append(columnBtn);
 
         container.append(column)
 
         return{
             column,
+            columnContainer,
             columnText,
+            columnClone,
             columnBtn,
             columnLock
         }
@@ -39,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () =>{
                 createCols()
             }
         }
+
+        let cols = document.querySelectorAll('.col');
+        setRandomColors(false, cols)
     }
 
     checkInputCalcEmpty()
@@ -79,7 +102,10 @@ document.addEventListener('DOMContentLoaded', () =>{
             node.classList.toggle('fa-lock');
         } else if(type === 'copy'){
             copyToClipBoard(event.target.textContent);
-        } else if(type === 'clone'){
+        } else if(type === 'update'){
+            const cols = document.querySelectorAll('.col');
+            setRandomColors(false, cols)
+        }else if(type === 'clone'){
             const node = event.target.tagName.toLowerCase() === 'div';
 
             if(node){
@@ -121,8 +147,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         const colors = isInitial ? getColorsFromHash() : [];
 
         cols.forEach((col, index) => {
-            const isLocked = col.querySelector('i').classList.contains('fa-lock');
+            const isLocked = col.querySelector('.fa-solid').classList.contains('fa-lock');
             const text = col.querySelector('h2');
+            const clone = col.querySelector('.fa-clone');
             const button = col.querySelector('button');
 
 
@@ -141,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 }
 
                 setTextColor(text, color);
+                setTextColor(clone, color);
                 setTextColor(button, color);
             } else { 
                 colors.push(text.textContent)
