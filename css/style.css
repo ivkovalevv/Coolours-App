@@ -178,32 +178,39 @@ body{
 .fa-check{
     font-size: 20px;
     color: green;
-    position: relative;
 }
 
-.fa-check::after{
-    content: 'Copied!';
+.fa-sharp{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #000000;
+}
+
+.copyed-push{
+    display: flex;
+    align-items: center;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    font-weight: 300;
-    top: -250%;
-    left: -150%;
-    width: 70px;
-    height: 16px;
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 7px;
+    top: 85%;
+    margin: 0 auto;
     color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 0px 20px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    animation: copied .3s;
+    backdrop-filter: blur(7.7px);
+    -webkit-backdrop-filter: blur(7.7px);
+    animation: copyed .5s;
 }
 
-@keyframes copied{
+.push-close{
+    transition: opacity .5s;
+    opacity: 0;
+}
+
+@keyframes copyed{
     0%{
         opacity: 0;
-        transform: translateY(50%);
+        transform: translateY(100%);
     }
 
     100%{
@@ -240,6 +247,7 @@ body{
     border-radius: 10px;
     background-color: transparent;
     transition: background-color .3s, transform .3s, width .3s;
+    overflow: hidden;
 }
 
 .heading-container:hover{

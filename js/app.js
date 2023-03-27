@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () =>{
+    const main = document.querySelector('.main')
     const container = document.querySelector('.container');
     const inputCalc = document.getElementById('inputCalc');
     let currentCalc;
@@ -15,7 +16,43 @@ document.addEventListener('DOMContentLoaded', () =>{
     
     if(getColorsFromHash().length > 0){
         currentCalc = getColorsFromHash().length
-    } else {currentCalc = 5}
+    } else {currentCalc = 3}
+
+    function createPush(){
+        const div = document.createElement('div');
+        const tick = document.createElement('i');
+        const text = document.createElement('p');
+
+        div.classList.add('copyed-push');
+        tick.classList.add('fa-sharp', 'fa-solid', 'fa-circle-check');
+        text.textContent = 'Color copied to the clipboard!';
+
+        div.append(tick);
+        div.append(text);
+
+        main.append(div);
+
+        return {
+            div,
+            tick,
+            text
+        }
+    }
+
+    function showCopyed(el){
+        el.classList.remove('fa-clone')
+        el.classList.add('fa-check')
+        createPush()
+
+        setTimeout(() => {
+            el.classList.remove('fa-check')
+            el.classList.add('fa-clone')
+
+            document.querySelectorAll('.copyed-push').forEach(el =>{
+                el.classList.add('push-close');
+            })
+        }, 2000)
+    }
 
     function createCols(){
         const column = document.createElement('div');
@@ -27,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         column.classList.add('col');
         columnContainer.classList.add('heading-container')
+        columnContainer.dataset.type = 'copy'
         columnText.dataset.type = 'copy'
         columnClone.classList.add('fa', 'fa-clone', 'heading-copy')
         columnClone.dataset.type = 'copy'
@@ -101,7 +139,21 @@ document.addEventListener('DOMContentLoaded', () =>{
             node.classList.toggle('fa-lock-open');
             node.classList.toggle('fa-lock');
         } else if(type === 'copy'){
-            copyToClipBoard(event.target.textContent);
+            let node = event.target.tagName.toLowerCase() === 'i';
+            if(!node){
+                copyToClipBoard(event.target.textContent);
+            } else{
+                copyToClipBoard(event.target.parentElement.textContent);
+            }
+
+            if(node){
+                showCopyed(event.target)
+            } else if(event.target.tagName.toLowerCase() === 'div'){
+                showCopyed(event.target.children[1])
+            } else {
+                showCopyed(event.target.nextSibling)
+            }
+
         } else if(type === 'update'){
             const cols = document.querySelectorAll('.col');
             setRandomColors(false, cols)
@@ -114,13 +166,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 copyToClipBoard(event.target.parentElement.textContent);
             }
 
-            clone.classList.remove('fa-clone')
-            clone.classList.add('fa-check')
-
-            setTimeout(() => {
-                clone.classList.remove('fa-check')
-                clone.classList.add('fa-clone')
-            }, 2000)
+            showCopyed(clone)
         }
 
     })
