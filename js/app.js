@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         } else if(type === 'update'){
             const cols = document.querySelectorAll('.col');
             setRandomColors(false, cols)
-        }else if(type === 'clone'){
+        } else if(type === 'clone'){
             const node = event.target.tagName.toLowerCase() === 'div';
 
             if(node){
@@ -169,6 +169,26 @@ document.addEventListener('DOMContentLoaded', () =>{
             showCopyed(clone)
         }
 
+    })
+
+    let shareBtn = document.querySelector('.fa-share-from-square');
+
+    const thisTitle = `coolours app by ivkovalevv 
+    github.com/ivkovalevv`
+    const thisUrl = window.location.href;
+
+    const shareObj = {
+        title: thisTitle,
+        url: thisUrl 
+    }
+
+    shareBtn.addEventListener('click', async () =>{
+        try {
+            await navigator.share(shareObj)
+            console.log('Всё получилось!')
+        } catch(err){
+            console.log(err)
+        }
     })
 
     function generateRandomColor(){
