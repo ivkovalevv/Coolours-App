@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     })
 
-    let shareBtn = document.querySelector('.fa-share-from-square');
+    let shareBtn = document.querySelector("[data-type='share']")
 
     const thisTitle = `coolours app by ivkovalevv 
     github.com/ivkovalevv`

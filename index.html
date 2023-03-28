@@ -16,6 +16,7 @@
     <title>Coolours App</title>
 
     <script defer src="./js/app.js"></script>
+    <script defer src="./js/select.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -24,7 +25,13 @@
         <div class="header">
             <div class="content">
                 <h1 class="main-heading">Coolours App</h1>
-                <i class="fa-solid fa-share-from-square" data-type="share"></i>
+                <div class="header__nav">
+                    <div id="select"></div>
+                    <div class="button-container" data-type="share">
+                        <p class="button-description" data-type="share">Share:</p>
+                        <i class="fa-solid fa-share-from-square" data-type="share"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <section class="nav">
