@@ -17,6 +17,7 @@
 
     <script defer src="./js/app.js"></script>
     <script defer src="./js/select.js"></script>
+    <script defer src="./js/lang.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -28,7 +29,7 @@
                 <div class="header__nav">
                     <div id="select"></div>
                     <div class="button-container" data-type="share">
-                        <p class="button-description" data-type="share">Share:</p>
+                        <p class="button-description lng-share" data-type="share">Share:</p>
                         <i class="fa-solid fa-share-from-square" data-type="share"></i>
                     </div>
                 </div>
@@ -36,11 +37,15 @@
         </div>
         <section class="nav">
             <div class="content">
-                <label for="number" class="number-label">Add colors:
+                <label for="number" class="number-label">
+                    <span class="lng-add-colors">Add colors:</span>
                     <input id="inputCalc" type="number" name="number" min="1" max="8" maxlength="1" minlength="1">
                 </label>
                 <div data-type="clone" class="colors-container">
-                    <p data-type="clone" class="all-colors"></p>
+                    <p data-type="clone" class="">
+                        <span data-type="clone" class="lng-all-colors">All colors: </span>
+                        <span data-type="clone" class="all-colors"></span>
+                    </p>
                     <i data-type="clone" class="fa fa-clone" aria-hidden="true"></i>
                 </div>
             </div>
@@ -48,11 +53,11 @@
         <section class="section-description">
             <div class="description-block">
                 <div class="content">
-                    <p class="main-description">
+                    <p class="main-description lng-description">
                         Press the spacebar to generate a new palette!
                     </p>
                     <div class="button-container" data-type="update">
-                        <p class="button-description" data-type="update">Update:</p>
+                        <p class="button-description lng-update" data-type="update">Update:</p>
                         <button class="update-colors-btn" data-type="update"></button>
                     </div>
                 </div>
@@ -68,6 +73,10 @@
                     <i data-type="lock" class="fa-solid fa-lock-open"></i>
                 </button>
             </div> -->
+        </div>
+        <div class="copyed-push push-close">
+            <i class="fa-sharp fa-solid fa-circle-check"></i>
+            <p class="lng-push-copied">Color copied to the clipboard!</p>
         </div>
     </div>
 </body>

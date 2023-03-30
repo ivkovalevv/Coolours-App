@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () =>{
+    /* CHANGE LANGUAGES */
+
+    const items = document.querySelectorAll('.select__item')
+
+    items.forEach(item => {
+        item.addEventListener('click', () =>{
+            let lng = item.textContent
+
+            changeLanguage(lng)
+        })
+    })
+
+    function changeLanguage(lng){
+        for(let key in langArr){
+            let elem = document.querySelector('.lng-' + key)
+            if(elem){
+                elem.innerHTML = (langArr[key][lng])
+            }
+        }
+    }
+
+    /* ============================================================ */
+
     const main = document.querySelector('.main')
     const container = document.querySelector('.container');
     const inputCalc = document.getElementById('inputCalc');
@@ -24,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         const text = document.createElement('p');
 
         div.classList.add('copyed-push');
+        div.classList.add('push-open');
         tick.classList.add('fa-sharp', 'fa-solid', 'fa-circle-check');
+        text.classList.add('lng-push-copied')
         text.textContent = 'Color copied to the clipboard!';
 
         div.append(tick);
@@ -42,13 +67,22 @@ document.addEventListener('DOMContentLoaded', () =>{
     function showCopyed(el){
         el.classList.remove('fa-clone')
         el.classList.add('fa-check')
-        createPush()
+
+        const push = document.querySelector('.copyed-push')
+
+        if(push){
+            push.classList.add('push-open')
+        } else{
+            createPush()
+        }
+ 
 
         setTimeout(() => {
             el.classList.remove('fa-check')
             el.classList.add('fa-clone')
 
             document.querySelectorAll('.copyed-push').forEach(el =>{
+                el.classList.remove('push-open');
                 el.classList.add('push-close');
             })
         }, 2000)
@@ -210,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function setRandomColors(isInitial, cols){
         let allColors = document.querySelector('.all-colors');
+        let allColorsText = document.querySelector('.lng-all-colors')
         const colors = isInitial ? getColorsFromHash() : [];
 
         cols.forEach((col, index) => {
@@ -244,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         updateColorsHash(colors)
 
-        allColors.textContent = 'All colors: ' + colors.map(color => ' ' + color)
+        allColors.textContent = colors.map(color => ' ' + color)
     }
 
     function setTextColor(text, color){
@@ -271,4 +306,5 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     setRandomColors(true, cols)
+
 });

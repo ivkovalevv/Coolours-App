@@ -29,15 +29,16 @@ body{
 }
 
 .header__nav{
-    width: 15%;
+    width: 35%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .select{
     position: relative;
     z-index: 5;
+    margin-right: 15px;
 }
 
 .select__back-drop{
@@ -108,6 +109,9 @@ body{
     text-align: center;
     cursor: pointer;
     transition: background-color .3s;
+}
+
+.select__item:not(:first-child){
     border-top: 1px solid #828282cc;
 }
 
@@ -120,6 +124,7 @@ body{
 }
 
 .button-container{
+    min-width: 35px;
     width: 35px;
     height: 35px;
     border-radius: 20px;
@@ -133,7 +138,7 @@ body{
 }
 
 .button-container:hover{
-    width: 120px;
+    width: 160px;
     background-color: #48526d;
 }
 
@@ -152,6 +157,10 @@ body{
 }
 
 .button-description{
+    width: 110px;
+    margin-left: 10px;
+    margin-right: 5px;
+    text-align: center;
     font-size: 18px;
     color: #cacaca;
     letter-spacing: 2px;
@@ -271,7 +280,7 @@ body{
     background-color: #49577d;
 }
 
-.all-colors{
+.all-colors, .lng-all-colors{
     color: #cacaca;
 }
 
@@ -303,12 +312,16 @@ body{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.7px);
     -webkit-backdrop-filter: blur(7.7px);
-    animation: copyed .5s;
 }
 
 .push-close{
     transition: opacity .5s;
     opacity: 0;
+}
+
+.push-open{
+    opacity: 1;
+    animation: copyed .5s;
 }
 
 @keyframes copyed{
