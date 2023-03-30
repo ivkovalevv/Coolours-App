@@ -66,25 +66,28 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function showCopyed(el){
         el.classList.remove('fa-clone')
-        el.classList.add('fa-check')
+        el.classList.add('fa-check') 
 
         const push = document.querySelector('.copyed-push')
 
-        if(push){
-            push.classList.add('push-open')
-        } else{
-            createPush()
-        }
+        push.classList.remove('push-close')
+        push.classList.add('push-open')
+
+        let pushIsOpen = push.classList.contains('push-open')
+
+        if(pushIsOpen){
+            setTimeout(() => {
+                document.querySelectorAll('.copyed-push').forEach(el =>{
+                el.classList.remove('push-open');
+                el.classList.add('push-close');
+            })
+            }, 2000)
+        } 
  
 
         setTimeout(() => {
             el.classList.remove('fa-check')
             el.classList.add('fa-clone')
-
-            document.querySelectorAll('.copyed-push').forEach(el =>{
-                el.classList.remove('push-open');
-                el.classList.add('push-close');
-            })
         }, 2000)
     }
 
