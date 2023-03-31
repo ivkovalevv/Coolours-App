@@ -475,11 +475,11 @@ body{
     }
 
     .select{
-        transform: translate(135px, 24px)
+        transform: translate(175px, -49px)
     }
 
     .button-container-select{
-        transform: translate(130px, 24px) !important;
+        transform: translate(120px, 24px) !important;
     }
 
     .select__input, .select__dropdown{
