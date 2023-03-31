@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     const main = document.querySelector('.main')
     const container = document.querySelector('.container');
     const inputCalc = document.getElementById('inputCalc');
-    const btnMinus = document.querySelector('.fa-minus');
+    const btnMinus = document.querySelector('.minus');
     btnMinus.disabled = false
-    const btnPlus = document.querySelector('.fa-plus');
+    const btnPlus = document.querySelector('.plus');
     btnPlus.disabled = false
     let currentCalc;
 
@@ -35,25 +35,33 @@ document.addEventListener('DOMContentLoaded', () =>{
     btnPlus.addEventListener('click', inputPlus)
 
     function inputMinus(){
-        inputCalc.value--
-        if(inputCalc.value < 1){
+        btnPlus.disabled = false
+        btnPlus.classList.remove('disabled')
+
+        if(inputCalc.value == 2){
             inputCalc.value = 1
             btnMinus.disabled = true
+            btnMinus.classList.add('disabled')
         } else{
-            btnMinus.disabled = false
+            inputCalc.value--
         }
+
         renderColsFromInput()
         return inputCalc.value
     }
 
     function inputPlus(){
-        inputCalc.value++
-        if(inputCalc.value > 8){
+        btnMinus.disabled = false
+        btnMinus.classList.remove('disabled')
+
+        if(inputCalc.value == 7){
             inputCalc.value = 8
             btnPlus.disabled = true
+            btnPlus.classList.add('disabled')
         } else{
-            btnPlus.disabled = false
+            inputCalc.value++
         }
+
         renderColsFromInput()
         return inputCalc.value
     }
@@ -278,7 +286,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     function setRandomColors(isInitial, cols){
         let allColors = document.querySelector('.all-colors');
-        let allColorsText = document.querySelector('.lng-all-colors')
         const colors = isInitial ? getColorsFromHash() : [];
 
         cols.forEach((col, index) => {

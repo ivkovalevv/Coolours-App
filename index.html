@@ -24,11 +24,11 @@
 <body>
     <div class="main">
         <div class="header">
-            <div class="content">
+            <div class="header-content">
                 <h1 class="main-heading">Coolours App</h1>
                 <div class="header__nav">
                     <div id="select"></div>
-                    <div class="button-container" data-type="share">
+                    <div class="button-container button-container-select" data-type="share">
                         <p class="button-description lng-share" data-type="share">Share:</p>
                         <i class="fa-solid fa-share-from-square" data-type="share"></i>
                     </div>
@@ -40,13 +40,17 @@
                 <label for="number" class="number-label">
                     <span class="lng-add-colors">Add colors:</span>
                     <div class="input-container">
-                        <i class="fa-solid fa-minus"></i>
-                        <input id="inputCalc" type="text" name="text" disabled min="1" max="8" maxlength="1" minlength="1">
-                        <i class="fa-solid fa-plus"></i>
+                        <button class="minus">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input id="inputCalc" type="text" name="text" disabled minlength="1">
+                        <button class="plus">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </label>
                 <div data-type="clone" class="colors-container">
-                    <p data-type="clone" class="">
+                    <p data-type="clone">
                         <span data-type="clone" class="lng-all-colors">All colors: </span>
                         <span data-type="clone" class="all-colors"></span>
                     </p>
@@ -56,7 +60,7 @@
         </section>
         <section class="section-description">
             <div class="description-block">
-                <div class="content">
+                <div class="description-content">
                     <p class="main-description lng-description">
                         Press the spacebar to generate a new palette!
                     </p>
@@ -67,7 +71,7 @@
                 </div>
             </div>
         </section>
-        <div class="container">
+        <div class="container container-cols">
             <!-- <div class="col">
                 <div class="heading-container">
                     <h2 data-type="copy"></h2>
