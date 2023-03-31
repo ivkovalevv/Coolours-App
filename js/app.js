@@ -25,7 +25,38 @@ document.addEventListener('DOMContentLoaded', () =>{
     const main = document.querySelector('.main')
     const container = document.querySelector('.container');
     const inputCalc = document.getElementById('inputCalc');
+    const btnMinus = document.querySelector('.fa-minus');
+    btnMinus.disabled = false
+    const btnPlus = document.querySelector('.fa-plus');
+    btnPlus.disabled = false
     let currentCalc;
+
+    btnMinus.addEventListener('click', inputMinus)
+    btnPlus.addEventListener('click', inputPlus)
+
+    function inputMinus(){
+        inputCalc.value--
+        if(inputCalc.value < 1){
+            inputCalc.value = 1
+            btnMinus.disabled = true
+        } else{
+            btnMinus.disabled = false
+        }
+        renderColsFromInput()
+        return inputCalc.value
+    }
+
+    function inputPlus(){
+        inputCalc.value++
+        if(inputCalc.value > 8){
+            inputCalc.value = 8
+            btnPlus.disabled = true
+        } else{
+            btnPlus.disabled = false
+        }
+        renderColsFromInput()
+        return inputCalc.value
+    }
 
     inputCalc.oninput = function() {
         if (this.value.length > 1) {
@@ -39,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     
     if(getColorsFromHash().length > 0){
         currentCalc = getColorsFromHash().length
-    } else {currentCalc = 3}
+    } else {
+        currentCalc = 3
+    }
 
     function createPush(){
         const div = document.createElement('div');
@@ -153,8 +186,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         checkInputCalcEmpty()
     }
-
-    inputCalc.addEventListener('input', renderColsFromInput)
 
     document.addEventListener('keydown', (event) => {
         if(event.code.toLowerCase() === 'space'){
