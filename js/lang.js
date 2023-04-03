@@ -18,9 +18,5 @@ const langArr = {
     "update": {
         "EN": "Update",
         "RU": "Обновить"
-    },
-    "push-copied": {
-        "EN": "Color copied to the clipboard!",
-        "RU": "Цвет скопирован в буфер обмена!"
     }
 }

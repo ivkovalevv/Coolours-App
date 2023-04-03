@@ -351,11 +351,23 @@ body{
     color: #000000;
 }
 
-.copyed-push{
-    display: flex;
-    align-items: center;
+.push-container{
+    display: none;
     position: absolute;
     top: 85%;
+    z-index: 0;
+    height: 1vh;
+    flex-direction: column-reverse;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.copyed-push{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
     margin: 0 auto;
     color: #fff;
     padding: 0px 20px;
@@ -512,12 +524,30 @@ body{
         min-height: 45px;
     }
 
-    .lng-add-colors, .lng-all-colors, .all-colors, .main-description, .lng-push-copied{
+    .lng-add-colors, .lng-all-colors, .all-colors, .lng-push-copied{
         font-size: 15px;
     }
 
+    .description-content{
+        justify-content: end;
+    }
+
     .main-description{
-        text-align: start;
+        display: none;
+    }
+
+    .button-container-update{
+        width: 150px;
+    }
+
+    .button-container-update:hover{
+        width: 150px;
+    }
+
+    .lng-update{
+        display: flex !important;
+        transform: translateX(0);
+        opacity: 1;
     }
 
     .container-cols{

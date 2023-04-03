@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     const main = document.querySelector('.main')
     const container = document.querySelector('.container');
+    const pushContainer = document.querySelector('.push-container')
     const inputCalc = document.getElementById('inputCalc');
     const btnMinus = document.querySelector('.minus');
     btnMinus.disabled = false
@@ -82,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () =>{
         currentCalc = 3
     }
 
-    function createPush(){
+    const pushTextContentEN = 'Color copied to the clipboard!';
+    const pushTextContentRU = 'Цвет скопирован в буфер обмена!';
+
+    function createPush(pushTextContent){
         const div = document.createElement('div');
         const tick = document.createElement('i');
         const text = document.createElement('p');
@@ -91,12 +95,12 @@ document.addEventListener('DOMContentLoaded', () =>{
         div.classList.add('push-open');
         tick.classList.add('fa-sharp', 'fa-solid', 'fa-circle-check');
         text.classList.add('lng-push-copied')
-        text.textContent = 'Color copied to the clipboard!';
+        text.textContent = pushTextContent;
 
         div.append(tick);
         div.append(text);
 
-        main.append(div);
+        pushContainer.append(div);
 
         return {
             div,
@@ -105,30 +109,44 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
+
+    const push = {
+        newPush(pushTextContent) {
+            pushContainer.style.display = 'flex';
+            createPush(pushTextContent)
+        },
+
+        removePush(){
+            let push = document.querySelector('.copyed-push');
+
+            push.parentNode.removeChild(push.parentNode.firstChild)
+        }
+    }
+
+
     function showCopyed(el){
         el.classList.remove('fa-clone')
         el.classList.add('fa-check') 
 
-        const push = document.querySelector('.copyed-push')
+        let selectInput = document.querySelector('.select__input')
+        let language = selectInput.children[0].textContent
 
-        push.classList.remove('push-close')
-        push.classList.add('push-open')
-
-        let pushIsOpen = push.classList.contains('push-open')
-
-        if(pushIsOpen){
-            setTimeout(() => {
-                document.querySelectorAll('.copyed-push').forEach(el =>{
-                el.classList.remove('push-open');
-                el.classList.add('push-close');
-            })
-            }, 2000)
-        } 
- 
+        if(language === 'EN'){
+            push.newPush(pushTextContentEN);
+        } else if(language === 'RU'){
+            push.newPush(pushTextContentRU);
+        }
 
         setTimeout(() => {
             el.classList.remove('fa-check')
             el.classList.add('fa-clone')
+
+            push.removePush()
+
+            let pushArr = document.querySelectorAll('.copyed-push')
+            if(pushArr.length < 1){
+                pushContainer.style.display = 'none';
+            }
         }, 2000)
     }
 
@@ -249,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     let shareBtn = document.querySelector("[data-type='share']")
 
-    const thisTitle = `coolours app by ivkovalevv 
+    const thisTitle = `Coolours App by IvKovalevv 
     github.com/ivkovalevv`
     const thisUrl = window.location.href;
 
