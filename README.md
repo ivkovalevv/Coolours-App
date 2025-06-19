@@ -16,16 +16,16 @@
 
 ## 🛠 Технологии
 
-![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Sass](https://img.shields.io/badge/-Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
-![i18next](https://img.shields.io/badge/-i18next-26A69A?style=for-the-badge&logo=javascript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ## 🎥 Как это работает
 
-1. Выбираете понравившиеся цвета
-2. Копируете HEX-коды или делитесь ссылкой
-3. Используете в своих проектах!
+1. Нажимаете "Сгенерировать" для новой палитры
+2. Фиксируете понравившиеся цвета
+3. Копируете HEX-коды или делитесь ссылкой
+4. Используете цвета в своих проектах!
 
 ---
 
