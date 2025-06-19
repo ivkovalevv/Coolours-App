@@ -1,7 +1,7 @@
 # 🎨 Coolours App
 
-[![Live Demo](https://img.shields.io/badge/-ДЕМО-47245B?style=for-the-badge)](https://ivkovalevv.github.io/Coolours-App/#47245B-BD1067-FC0A38)
-[![Source Code](https://img.shields.io/badge/-КОД-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ivkovalevv/Coolours-App)
+[![Live Demo](https://img.shields.io/badge/-ДЕМО-47245B?style=for-the-badge)](https://ivkovalevv.github.io/coolours-app)
+[![Source Code](https://img.shields.io/badge/-КОД-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ivkovalevv/coolours-app)
 
 Генератор цветовых палитр для дизайнеров и разработчиков
 
